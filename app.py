@@ -41,7 +41,7 @@ def configured_app():
     app = Flask(__name__)
     # 设置 secret_key 来使用 flask 自带的 session
     # 这个字符串随便你设置什么内容都可以
-    # app.secret_key = secret.secret_key
+    app.secret_key = secret.secret_key
 
     uri = 'mysql+pymysql://root:{}@localhost/bbs?charset=utf8mb4'.format(
         secret.database_password
