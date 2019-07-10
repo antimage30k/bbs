@@ -1,0 +1,77 @@
+{% extends "topic/base.html" %}
+{% block title %}站内信{% endblock %}
+{% block main %}
+    <div id="main">
+        <div id="sidebar">
+
+            <div class="panel">
+                <div class="header">
+                    <span class="col_fade">个人信息</span>
+                </div>
+                <div class="inner">
+                    <div class="user_card">
+
+                        <a class="user_avatar" href="{{ url_for('index.profile') }}">
+                            <img src="{{ user.image }}">
+                        </a>
+                        <span class="user_name"><a class="dark"
+                                                   href="{{ url_for('index.profile') }}">{{ user.username }}</a></span>
+
+                        <div class="space clearfix"></div>
+                        <span class="signature">
+                               {{ user.signature }}
+                            </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="content">
+            <div class="panel">
+                <div class="header">
+                    <span class="col_fade">站内信</span>
+                </div>
+                <div class="inner">
+                    <div>
+                        <div class="control-group">
+                            <label class="control-label" for="id">发件人：</label>
+                            <a class="user_avatar pull-left" href="{{ url_for('index.user_detail', id=message.sender_id) }}">
+                                <img src={{ message.sender().image }}>
+                            </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span>{{ message.sender().username }}</span>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inner">
+                    <div>
+                        <div class="control-group">
+                            <label class="control-label" for="id">收件人：</label>
+                            <a class="user_avatar pull-left" href="{{ url_for('index.user_detail', id=message.receiver_id) }}">
+                                <img src={{ message.receiver().image }}>
+                            </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span>{{ message.sender().username }}</span>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inner">
+                    <div>
+                        <div class="control-group">
+                            <label class="control-label" for="id">标题：</label>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ message.title }}</span>
+                            <br>
+                            <br>
+                            <label class="control-label" for="id">内容：</label>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ message.content }}</span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

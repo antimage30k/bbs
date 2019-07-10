@@ -1,0 +1,37 @@
+{% extends 'login_base.html' %}
+{% block title %}忘记密码{% endblock %}
+{% block main %}
+<body class="login login-action-lostpassword wp-core-ui  locale-zh-cn">
+<div id="login">
+        <a class="brand" href="{{ url_for('index.index') }}">
+            <img src="/images/brand.png">
+            </a>
+{#    <h1><a href="{{ url_for('index.index') }}">RieRuuuu BBS</a></h1>#}
+    <p class="message">请输入您的用户名。您会收到一封包含创建新密码链接的电子邮件。</p>
+    <form name="lostpasswordform" id="lostpasswordform" action="{{ url_for('reset.send') }}"
+          method="post">
+        <p>
+            <label for="user_login">用户名<br>
+                <input type="text" name="username" id="user_login" class="input" value="" size="20"
+                       autocapitalize="off"></label>
+        </p>
+        <p class="submit"><input type="submit" name="wp-submit" id="wp-submit"
+                                 class="button button-primary button-large" value="获取新密码"></p>
+    </form>
+    <p id="nav">
+        <a href="{{ url_for('index.login_page') }}">登录</a>
+        | <a rel="nofollow" href="{{ url_for('index.register_page') }}">注册</a></p>
+
+</div>
+<script type="text/javascript">
+    try {
+        document.getElementById('user_login').focus();
+    } catch (e) {
+    }
+    if (typeof wpOnload == 'function') wpOnload();
+</script>
+<div class="clear"></div>
+
+
+</body>
+{% endblock %}

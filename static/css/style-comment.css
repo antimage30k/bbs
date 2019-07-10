@@ -1,0 +1,47 @@
+/*
+Theme Name: Zanblog 2.1.0
+Theme URI: http://www.yeahzan.com/zanblog
+Description: 基于Bootstrap3.0的WordPress主题
+Author: 佚站互联
+Author URI: http://www.yeahzan.com/
+Version: 2.1.0
+Tags: Bootstrap3, 扁平化设计, 精致简约
+*/
+
+/*文章－内容*/
+.centent-article > p {
+ font-size: 15px;
+}
+
+.et_subscribe{padding: 5px 15px 15px;}
+.et_subscribe .prepend{color: #666;font-size: 13.5px;height: 20px;margin-bottom: 12px;}
+.et_emailinput{padding: 1px 8px;height: 30px;background: #f7f7f7;outline: 0;border: none;width: 100%;float: left;}
+.et_submitbtn{width: 84px;height: 32px;background: #4ba6e5;color: #fff;letter-spacing: 2px;font-size: 15px;font-family: "Microsoft Yahei","Helvetica Neue",Helvetica,Arial,sans-serif !important;border: none;padding: 0;}
+
+
+#ds-recent-comments-2{
+    background-color: #ffffff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: 0 0 5px #c2c2c2;    
+}
+.list-group-item{
+  min-height:60px;
+}
+
+#topcontrol > img {
+  max-width: 80px;
+  z-index: 10;
+}
+
+#ds-thread #ds-reset .ds-paginator a {
+    background-color: #eee;
+}
+
+#ds-thread #ds-reset .ds-paginator a.ds-current {
+    background-color: #fff;
+}
+body{
+	height:100vh;
+	background-position:right bottom;
+}

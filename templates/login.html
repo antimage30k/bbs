@@ -1,0 +1,36 @@
+{% extends 'login_base.html' %}
+{% block title %}登录{% endblock %}
+{% block main %}
+<body class="login login-action-login wp-core-ui  locale-zh-cn">
+<div id="login">
+    <a class="brand" href="{{ url_for('index.index') }}">
+            <img src="/images/brand.png">
+            </a>
+{#    <a href="{{ url_for('index.index') }}"><img src="/images/brand.png"></a>#}
+    <form name="loginform" id="loginform" action="{{ url_for('index.login') }}" method="post" _lpchecked="1">
+        <p>
+            <label for="user_login">用户名<br>
+                <input type="text" name="username" id="user_login" class="input" value="test"  size="20" autocapitalize="off"
+                       autocomplete="off">
+
+        </p>
+        <p>
+            <label for="user_pass">密码<br>
+                <input type="password" name="password" id="user_pass" class="input" value="123" size="20" autocomplete="off">
+        </p>
+        <p class="submit">
+<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="登录">
+    </form>
+    <p id="nav">
+        <a rel="nofollow" href="{{ url_for('index.register_page') }}">注册</a> |
+        <a href="{{ url_for('reset.forget_pw') }}">忘记密码？</a>
+    </p>
+
+
+</div>
+<div class="clear"></div>
+
+
+</body>
+
+{% endblock %}

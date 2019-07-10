@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{% block title %}{% endblock%}</title>
+
+    <meta content="" name="keywords">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="/images/favicon.png" sizes="48x48" type="image/png">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/github-markdown-css/3.0.1/github-markdown.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/github-markdown-css/3.0.1/github-markdown.min.css" rel="stylesheet">
+
+    <link href="//cdn.bootcss.com/prism/1.8.0/themes/prism.css" rel="stylesheet">
+    <style type="text/css">
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 .07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+    </style>
+    <link rel="stylesheet" id="wp-block-library-css"
+          href="/static/css/style.min.css"
+          type="text/css" media="all">
+    <link rel="stylesheet" id="jquery-datatables-css"
+          href="/static/css/jquery.dataTables.min.css"
+          type="text/css" media="all">
+    <link rel="stylesheet" id="datatables-buttons-css"
+          href="/static/css/buttons.dataTables.min.css"
+          type="text/css" media="all">
+    <link rel="stylesheet" id="datatables-select-css"
+          href="/static/css/select.dataTables.min.css"
+          type="text/css" media="all">
+    <link rel="stylesheet" id="datatables-fixedheader-css"
+          href="/static/css/fixedHeader.dataTables.min.css"
+          type="text/css" media="all">
+    <link rel="stylesheet" id="datatables-fixedcolumns-css"
+          href="/static/css/fixedColumns.dataTables.min.css"
+          type="text/css" media="all">
+    <link rel="stylesheet" id="datatables-responsive-css"
+          href="/static/css/responsive.dataTables.min.css"
+          type="text/css" media="all">
+    <link rel="stylesheet" id="wp-polls-css"
+          href="/static/css/polls-css.css"
+          type="text/css" media="all">
+    <style id="wp-polls-inline-css" type="text/css">
+        .wp-polls .pollbar {
+            margin: 1px;
+            font-size: 8px;
+            line-height: 10px;
+            height: 10px;
+            background-image: url('https://cache.cswsadlab.com/wp-content/plugins/wp-polls/images/default_gradient/pollbg.gif');
+            border: 1px solid #c8c8c8;
+        }
+
+    </style>
+    <link rel="stylesheet" id="bootstrap-style-css"
+          href="/static/css/bootstrap.css"
+          type="text/css" media="all">
+    <link rel="stylesheet" id="fontawesome-style-css"
+          href="/static/css/font-awesome.min.css"
+          type="text/css" media="all">
+    <link rel="stylesheet" id="icheck-style-css"
+          href="/static/css/red.css"
+          type="text/css" media="all">
+    <link rel="stylesheet" id="theme-core-css"
+          href="/static/css/core.css"
+          type="text/css" media="all">
+    <link rel="stylesheet" id="zanblog-style-css"
+          href="/static/css/style-comment.css"
+          type="text/css" media="all">
+    <link rel="stylesheet" id="custom-style-css"
+          href="/static/css/custom028.css"
+          type="text/css" media="all">
+    <link rel="stylesheet" id="devework-shortcodes-css"
+          href="/static/css/shortcodes.css"
+          type="text/css" media="all">
+    <link rel="stylesheet" id="devework-shortcodes-fontello-css"
+          href="/static/css/fontello.css"
+          type="text/css" media="all">
+    <link rel="stylesheet" id="tablepress-default-css"
+          href="/static/css/tablepress-combined.min.css"
+          type="text/css" media="all">
+    <link rel="stylesheet" id="shiftnav-css"
+          href="/static/css/shiftnav.min.css"
+          type="text/css" media="all">
+    <link rel="stylesheet" id="shiftnav-font-awesome-css"
+          href="/static/css/font-awesome.min(1).css"
+          type="text/css" media="all">
+    <link rel="stylesheet" id="shiftnav-custom-css"
+          href="/static/css/custom.css"
+          type="text/css" media="all">
+
+    <link rel="https://api.w.org/" href="https://vcb-s.com/wp-json/">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://vcb-s.com/xmlrpc.php?rsd">
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml"
+          href="https://cache.cswsadlab.com/wp-includes/wlwmanifest.xml">
+    <meta name="generator" content="WordPress 5.2.2">
+    <link rel="canonical" href="https://vcb-s.com/archives/10377">
+    <link rel="shortlink" href="https://vcb-s.com/?p=10377">
+    <link rel="alternate" type="application/json+oembed"
+          href="https://vcb-s.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fvcb-s.com%2Farchives%2F10377">
+    <link rel="alternate" type="text/xml+oembed"
+          href="https://vcb-s.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fvcb-s.com%2Farchives%2F10377&amp;format=xml">
+    <style type="text/css" id="shiftnav-dynamic-css">
+
+        @media only screen and (min-width: 991px) {
+            #shiftnav-toggle-main, .shiftnav-toggle-mobile {
+                display: none;
+            }
+
+            .shiftnav-wrap {
+                padding-top: 0 !important;
+            }
+        }
+
+        @media only screen and (max-width: 990px) {
+            #zan-header {
+                display: none !important;
+            }
+        }
+
+        /** ShiftNav Custom Tweaks (General Settings) **/
+        body {
+            overflow-x: hidden;
+        }
+
+        #shiftnav-toggle-main {
+            background-color: #4856bd;
+            background-color: rgba(256, 256, 256, .1);
+            padding: 0;
+        }
+
+        .shiftnav.shiftnav-skin-light ul.shiftnav-menu ul.sub-menu li.menu-item > .shiftnav-target {
+            color: #e74c3c;
+        }
+
+        .shiftnav.shiftnav-skin-light.shiftnav-nojs ul.shiftnav-menu li.menu-item > .shiftnav-target:hover, .shiftnav.shiftnav-skin-light ul.shiftnav-menu.shiftnav-active-on-hover li.menu-item > .shiftnav-target:hover, .shiftnav.shiftnav-skin-light ul.shiftnav-menu.shiftnav-active-highlight li.menu-item > .shiftnav-target:active {
+            background: #e74c3c;
+        }
+
+        .shiftnav-main-toggle-content > img {
+            margin-top: -8px;
+        }
+
+        #shiftnav-toggle-main .shiftnav-toggle-burger, #shiftnav-toggle-main.shiftnav-toggle-main-entire-bar:before {
+            color: #9696cc;
+            font-size: 25px;
+        }
+
+        .shiftnav-wrap {
+            overflow: initial;
+        }
+
+        .shiftnav.shiftnav-skin-light {
+            background-color: #fff;
+        }
+
+        .shiftnav.shiftnav-skin-light ul.shiftnav-menu ul.sub-menu {
+            background-color: #fafafa;
+        }
+
+        #shiftnav-toggle-main .shiftnav-toggle-burger, #shiftnav-toggle-main.shiftnav-toggle-main-entire-bar:before {
+            padding: 15px;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            border-radius: 0 6px 6px 0;
+            background-color: rgba(62, 70, 180, .2);
+            z-index: 251;
+        }
+
+        /* Status: Loaded from Transient */
+
+    </style>
+    <link rel="stylesheet" id="ABHfrontend.min.css-css"
+          href="/static/css/frontend.min.css"
+          type="text/css" media="all">
+    <script type="text/javascript"
+            src="/static/css/frontend.min.js.download"></script>
+    <link rel="stylesheet" id="ABHhidedefault.min.css-css"
+          href="/static/css/hidedefault.min.css"
+          type="text/css" media="all">
+    <style type="text/css" id="custom-background-css">
+        body.custom-background {
+            background-image: url("/images/bg6.png");
+            background-position: left top;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+    <style type="text/css" id="wp-custom-css">
+        /*
+您可以在此处加入您的CSS。
+
+点击上方的帮助图标来了解更多。
+*/
+        body {
+            font-family: Helvetica, "Microsoft Yahei", Arial, sans-serif !important;
+        }        </style>
+
+
+    <style type="text/css">object, embed {
+        -webkit-animation-duration: .001s;
+        -webkit-animation-name: playerInserted;
+        -ms-animation-duration: .001s;
+        -ms-animation-name: playerInserted;
+        -o-animation-duration: .001s;
+        -o-animation-name: playerInserted;
+        animation-duration: .001s;
+        animation-name: playerInserted;
+    }
+
+    @-webkit-keyframes playerInserted {
+        from {
+            opacity: 0.99;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @-ms-keyframes playerInserted {
+        from {
+            opacity: 0.99;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @-o-keyframes playerInserted {
+        from {
+            opacity: 0.99;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes playerInserted {
+        from {
+            opacity: 0.99;
+        }
+        to {
+            opacity: 1;
+        }
+    }</style>
+
+</head>
+<body class="post-template-default single single-post postid-10377 single-format-standard logged-in custom-background zh nav-fixed shiftnav-enabled shiftnav-lock">
+
+<div class="shiftnav-wrap" style="padding-top: 0px;">
+    <header id="zan-header" class="navbar navbar-inverse navbar-fixed-top">
+        <nav class="container">
+            <a href="{{ url_for('index.index') }}">
+                <div class="navbar-brand"><strong><i class="fa fa-home"></i>RieRuuuu BBS</strong></div>
+            </a>
+
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="fa fa-reorder fa-lg"></span>
+            </button>
+            <div class="navbar-collapse bs-navbar-collapse collapse">
+                <ul id="menu-navbar" class="nav navbar-nav">
+                    <li id="menu-item-7075"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-7075">
+                        <a href="{{ url_for('index.index') }}"><i class="fa fa-book"></i> 首页 </a>
+                    </li>
+                    <li id="menu-item-7074"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7074">
+                        <a href="{{ url_for("index.profile") }}"><i class="fa fa-address-card"></i> 个人主页</a>
+
+                    </li>
+                    <li id="menu-item-3128"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-3128">
+                        <a href="{{ url_for("setting.index") }}"><i class="fa fa-gears"></i> 用户设置</a>
+
+                    </li>
+                    <li id="menu-item-3103"
+                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3103"><a
+                            href="{{ url_for("mail.index") }}"><i class="fa fa-inbox"></i> 站内信</a></li>
+                    <li id="menu-item-3311"
+                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3311">
+                        <a href="{{ url_for("index.register_page") }}"><i class="fa fa-coffee"></i> 注册 </a>
+
+                    </li>
+                    <li id="menu-item-7076"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7076">
+                        <a href="{{ url_for('index.login_page') }}"><i class="fa fa-user"></i> 登录 </a>
+
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="if-fixed" class="pull-right visible-lg visible-md">
+            <i class="fa fa-thumb-tack"></i>
+            <div class="icheckbox_flat-red checked" style="position: relative;"><input type="checkbox"
+                                                                                       style="position: absolute; opacity: 0;">
+                <ins class="iCheck-helper"
+                     style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+            </div>
+        </div>
+    </header>
+
+{% block main %}
+{% endblock %}
+
+</body>
+</html>

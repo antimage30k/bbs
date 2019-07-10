@@ -1,0 +1,51 @@
+{% extends 'login_base.html' %}
+{% block title %}注册{% endblock %}
+{% block main %}
+    </head>
+    <body class="login login-action-register wp-core-ui  locale-zh-cn">
+    <div id="login">
+            <a class="brand" href="{{ url_for('index.index') }}">
+            <img src="/images/brand.png">
+            </a>
+{#        <h1><a href="{{ url_for('index.index') }}">RieRuuuu BBS</a></h1>#}
+        <p class="message register">在这个站点注册</p>
+        <form name="registerform" id="registerform" action="{{ url_for('index.register') }}" method="post"
+              novalidate="novalidate">
+            <p>
+                <label for="user_login">用户名<br>
+                    <input type="text" name="username" id="user_login" class="input" value="" size="20"
+                           autocapitalize="off"
+                           style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;"></label>
+            </p>
+            <p>
+                <label for="user_email">电子邮件<br>
+                    <input type="email" name="email" id="user_email" class="input" value="" size="25"></label>
+            </p>
+            <p>
+                <label for="password">密码<br>
+                    <input type="email" name="password" id="user_email" class="input" value="" size="25"></label>
+            </p>
+            <p>欢迎来到RieRuuuu BBS</p><br>
+
+            <br class="clear">
+            <p class="submit"><input type="submit" name="wp-submit" id="wp-submit"
+                                     class="button button-primary button-large" value="注册"></p>
+        </form>
+        <p id="nav">
+            <a href="{{ url_for('index.login_page') }}">登录</a>
+            | <a href="{{ url_for('reset.forget_pw') }}">忘记密码？</a>
+        </p>
+
+    </div>
+    <script type="text/javascript">
+        try {
+            document.getElementById('user_login').focus();
+        } catch (e) {
+        }
+        if (typeof wpOnload == 'function') wpOnload();
+    </script>
+    <div class="clear"></div>
+
+
+    </body>
+{% endblock %}

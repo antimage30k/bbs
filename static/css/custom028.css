@@ -1,0 +1,383 @@
+@charset "UTF-8";
+/**
+ * 在这里自定义你的CSS代码
+ */
+
+/*颜文字字体*/
+.emoticon{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+
+@media (max-width:768px){
+.navbar-collapse{
+    clear: left;
+}
+    /**修改菜单内滚动条样式为类似移动浏览器的深色窄边滚动条 */
+    .navbar-collapse::-webkit-scrollbar {width: 5px; background-color: transparent; }
+    .navbar-collapse::-webkit-scrollbar-track { border-radius: 2px;background-color: transparent; }
+    .navbar-collapse::-webkit-scrollbar-thumb {border-radius: 2px;background-color: rgba(255, 255, 255, 0.3);}
+}
+
+/*简繁转换菜单区域*/
+#wpcc_widget_inner{
+    margin-top: 1em;
+    margin-bottom: 2em;
+    padding: 1em;
+    height: auto;
+    height: 4.2em;
+    position: relative;
+    overflow: hidden;
+    font-weight: 100;
+    transition: all 500ms ease-in-out;
+    -moz-transition: all 500ms ease-in-out;
+    -webkit-transition: all 500ms ease-in-out;
+}
+#wpcc_widget_inner #wpcc_normal,
+#wpcc_widget_inner #wpcc_hover{
+    font-size: 2em;
+    color: gray;
+    position: absolute;
+    transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -webkit-transition: all 250ms ease-in-out;
+}
+#wpcc_widget_inner #wpcc_hover{
+    opacity: 0;
+    transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -webkit-transition: all 250ms ease-in-out;
+}
+#wpcc_widget_inner #wpcc_menu{
+    position: relative;
+    top: 4em;
+    left: -.3em;
+    opacity: 0;
+    transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -webkit-transition: all 250ms ease-in-out;
+}
+
+/*hover动作*/
+#wpcc_widget_inner:hover{
+    height: 14em;
+}
+#wpcc_widget_inner:hover #wpcc_menu{
+    top: 4em;
+    opacity: 1;
+}
+#wpcc_widget_inner:hover #wpcc_normal{opacity: 0;}
+#wpcc_widget_inner:hover #wpcc_hover{opacity: 1;}
+
+/*超小屏幕 避免换行错位 跳变点为标题长度*/
+@media (max-width:311px){
+    #wpcc_hover .emoticon{
+        display: none;
+    }
+}
+/* iphone 6 P屏幕大小为跳变点，按钮三行两列或两行三列*/
+@media (max-width:620px){
+    #wpcc_widget_inner:hover{
+        height:17em;
+    }
+    #wpcc_menu{
+        max-width: 25em;
+        /*height:18em;*/
+    }
+}
+/*中小屏幕跳变点，按钮变为一行*/
+@media (min-width:620px){
+    #wpcc_widget_inner:hover{
+        height: 10em;
+    }
+    #wpcc_widget_inner #wpcc_menu{
+        max-width: 50em;/*不换行*/
+    }
+}
+/*侧边栏跳变点，小于990时*/
+@media (max-width:990px){
+    /*修正搜索栏与正文部分接触过近的bug，20px来源于子元素设定值*/
+    #sidebar{
+        margin-top: 20px;
+    }
+}
+/*侧边栏跳变点，按钮两行三列或者三行两列*/
+@media (min-width:990px){
+    #wpcc_widget_inner:hover{
+        height: 14em;
+    }
+
+}
+/*大·侧边栏跳变点，设定跳变前按钮三行两列*/
+@media (min-width:990px) and (max-width:1200px){
+    #wpcc_widget_inner:hover{
+        height: 18em;
+    }
+    #wpcc_widget_inner #wpcc_menu{
+        max-width: 25em;
+    }
+}
+
+/*简繁转换，按钮外观*/
+.wpcc_lang a,.wpcc_current_lang a{
+    padding: 10px 15px;
+    font-size: 12px;
+    font-weight: normal;
+    border:1px solid #d9534f;
+    border-radius: 5px;
+    display:block;
+    float:left;
+    margin:5px;
+}
+ /* 简繁转换，未选择按钮 */
+.wpcc_lang a{
+    background-color: rgba(256,256,256,.61);
+    cursor: pointer;
+    min-width: 6.7em;/*按钮对齐*/
+    text-align: center;
+}
+ /**简繁转换，已选择按钮 */
+.wpcc_current_lang a{
+    color: #fff;
+    background-color: #e74c3c;
+    cursor: not-allowed;
+    min-width: 6.7em;/*按钮对齐*/
+    text-align: center;
+}
+
+/*按钮动效*/
+/*设置定位元素*/
+.wpcc_link{
+    position: relative;
+}
+/*动效触发前，伪元素*/
+.decoration:before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: .7em;
+    height: 1px;
+    width: 100%;
+    background: #d9534f;
+    transform: scale(0);
+    transition: all 0.2s ease-in-out;
+}
+/*动效触发*/
+.wpcc_link:hover .decoration:before{
+    transform: scale(.6);
+}
+
+/**
+ * 二维码背修复，不修复时为白色block
+ * */
+.textwidget{float: left;clear: left;}
+/* 修复首页多看评论框，当评论为空时的显示bug */
+.list-group-item{min-height:60px;}
+
+/*更改网站“伪”边框样式*/
+.well{
+  border-radius:4px;
+  box-shadow: -1px -1px 10px rgba(155,89,182,.5);
+  -webkit-box-shadow: -1px -1px 10px rgba(155,89,182,.5);
+}
+#sidebar aside > div{
+  border-radius:4px;
+  box-shadow: 1px -1px 6px rgba(155,89,182,.5);
+  -webkit-box-shadow: 1px -1px 6px rgba(155,89,182,.5);
+}
+
+#sidebar aside > div.search input{
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  width: 100%;
+}
+
+#sidebar aside > div.search button{
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  position: absolute;
+  right: 13px;
+  width: 35px;
+}
+.pagination-zan{
+  box-shadow: 1px -1px 6px rgba(155,89,182,.5);
+  -webkit-box-shadow: 1px -1px 6px rgba(155,89,182,.5);
+}
+/* 修改网站中小屏幕的显示宽度 */
+@media (min-width:768px){
+  .container{
+    max-width: 920px;
+    padding-left: 30px;
+    padding-right: 20px;
+  }
+}
+@media (min-width: 992px){
+  .container{
+    max-width: 970px;
+  }
+}
+@media (min-width:1200px){
+  .container{
+    max-width: 1170px;
+  }
+}
+@media(max-width: 991px) {
+  .shiftnav-wrap{
+    padding-top: 0!important;
+  }
+}
+/* 修改首页幻灯片元素为居中对齐 */
+.metaslider{margin-left: auto;margin-right: auto;}
+
+/*
+body{overflow-x:hidden;}
+#shiftnav-toggle-main{background-color:#4856bd;background-color:rgba(256,256,256,.1);padding:0;}
+.shiftnav.shiftnav-skin-light ul.shiftnav-menu ul.sub-menu li.menu-item > .shiftnav-target{color:#e74c3c;}
+.shiftnav.shiftnav-skin-light.shiftnav-nojs ul.shiftnav-menu li.menu-item > .shiftnav-target:hover, .shiftnav.shiftnav-skin-light ul.shiftnav-menu.shiftnav-active-on-hover li.menu-item > .shiftnav-target:hover, .shiftnav.shiftnav-skin-light ul.shiftnav-menu.shiftnav-active-highlight li.menu-item > .shiftnav-target:active{background:#e74c3c;}
+.shiftnav-main-toggle-content>img{margin-top:-8px;}
+#shiftnav-toggle-main .shiftnav-toggle-burger, #shiftnav-toggle-main.shiftnav-toggle-main-entire-bar:before{color:#9696cc;font-size:25px;}
+
+.shiftnav-wrap{overflow:initial;}
+.shiftnav.shiftnav-skin-light{background-color:#fff;}
+.shiftnav.shiftnav-skin-light ul.shiftnav-menu ul.sub-menu{background-color:#fafafa;}
+#shiftnav-toggle-main .shiftnav-toggle-burger, #shiftnav-toggle-main.shiftnav-toggle-main-entire-bar:before {
+    padding: 15px;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    border-radius: 0 6px 6px 0;
+    background-color: rgba(62,70,180,.2);
+    z-index: 251;
+}
+*/
+
+/* 回到顶端样式 */
+#topcontrol {
+    position: fixed;
+    bottom: 20px;
+    right: 1px;
+    cursor: pointer;
+    z-index: 4;
+    opacity: .6;
+}
+#topcontrol:hover {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+/* 原生评论样式修改v1 */
+form#commentform{
+padding:1em 1em 0 1em;
+background-color:white;
+background-color:rgba(255,255,255,.95);
+border-radius:4px;
+box-shadow:1px -1px 6px rgba(155,89,182,.5);
+}
+div#smilelink>a{
+padding:.4em .5em;
+border-radius:.4em;
+position:absolute;
+}
+div#smilelink::before{
+content:"》";
+display:inline-block;
+margin-top:.5em;
+margin-left:.5em;
+}
+div#smilelink:hover>a{position:initial;}
+
+/* 修改未登录状态评论框 */
+p.must-log-in {
+    display: none;
+}
+h3#reply-title {
+    cursor: pointer;
+}
+/* 友情链接  */
+#media_image-3,
+#media_image-4,
+#media_image-5,
+#media_image-6 {
+    text-align: center;
+    color: gray;
+    font-size: 1.8em;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 1em;
+    box-shadow: 1px -1px 6px rgba(155,89,182,.5);
+    -wekit-box-shadow: 1px -1px 6px rgba(155,89,182,.5);
+}
+#media_image-3 h2,
+#media_image-4 h2,
+#media_image-5 h2,
+#media_image-6 h2 {
+    margin: 0;
+    margin-bottom: .5em;
+}
+
+/* logo设置 覆盖core.css#772  */
+.navbar-brand {
+  background: url('/wp-content/themes/zanblog2_1_0/ui/images/logo1.svg') no-repeat;
+  background-position: center center;
+}
+
+/* 半屏下logo设置  */
+#shiftnav-toggle-main > .shiftnav-toggle-main-block > img {
+    height: 4em;
+}
+
+/* 评论列表样式 */
+/* ol.commentlist
+    li.comment#comment-$$$$$$
+      article.comment-body
+        footer.comment-meta
+          div.comment-author
+              img+b.fn+span
+          div.comment-metadata
+        div.comment-content
+        div.reply
+          a.comment-reply-login
+    li
+    ...
+*/
+.commentlist .comment-body .comment-meta {
+    height: 80px;
+    padding-left: 70px;
+    padding-top: 5px;
+}
+.commentlist .comment-body .comment-meta img {
+    width: 50px;
+    left: 10px;
+}
+.comment-author.vcard {
+    line-height: 2.5em;
+}
+.comment-author b.fn {
+    font-size: 1.5em;
+    width: 60px;
+    left: 10px;
+}
+.comment-author span {
+    display: none;
+}
+.commentlist .comment-body .comment-metadata {
+    float: left;
+    clear: left;
+    line-height: 1.7em;
+}
+.commentlist .comment-body .comment-metadata a {
+    color: gray;
+    font-weight: normal;
+}
+.commentlist .comment-body .comment-content {
+    padding-left: 35px;
+}
+/* 莫名奇妙的框框 */
+.pagination.pagination-zan.pull-right {
+    overflow: hidden;
+    box-shadow: 0px 0px 0px rgba(155,89,182,.5);
+}
+/* 登陆框输入被切问题 */
+.login-form .form-control {
+    padding: 6px 12px;
+}
+/* 覆盖主题背景设置，需要手动动态跟随更新 */
+/* body.custom-background {
+    background-image: url("//cache.cswsadlab.com/wp-content/uploads/2015/10/20_21.jpg")
+} */

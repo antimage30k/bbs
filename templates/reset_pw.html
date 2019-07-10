@@ -1,0 +1,45 @@
+{% extends 'login_base.html' %}
+{% block title %}设置新密码{% endblock %}
+{% block main %}
+<body class="login login-action-rp wp-core-ui  locale-zh-cn">
+<div id="login">
+    <a class="brand" href="{{ url_for('index.index') }}">
+            <img src="/images/brand.png">
+            </a>
+{#    <h1><a href="{{ url_for('index.index') }}">RieRuuuu BBS</a></h1>#}
+    <p class="message reset-pass">请在下方输入您的新密码。</p>
+    <form name="resetpassform" id="resetpassform" action="{{ url_for('reset.update_password') }}" method="get"
+          autocomplete="off">
+        <div class="user-pass1-wrap">
+            <p>
+                <label for="pass1">新密码</label>
+            </p>
+            <div class="wp-pwd">
+                <div class="password-input-wrapper show-password">
+                    <input type="password" data-reveal="1"  name="password"
+                           class="input password-input hide-if-no-js strong" size="24" value="" autocomplete="off"
+                           aria-describedby="pass-strength-result">
+
+                    <button type="button" class="button button-secondary wp-hide-pw hide-if-no-js">
+                        <span class="dashicons dashicons-hidden" aria-hidden="true"></span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <br class="clear">
+        <input type="hidden" name="token" value="{{ token }}">
+        <p class="submit"><input type="submit"  id="wp-submit"
+                                 class="button button-primary button-large" value="重置密码"></p>
+    </form>
+    <p id="nav">
+        <a href="https://vcb-s.com/wp-login.php">登录</a>
+        | <a href="https://vcb-s.com/wp-login.php?action=register">注册</a></p>
+    <p id="backtoblog"><a href="{{ url_for('index.index') }}">
+        ← 返回到RieRuuuu BBS </a></p>
+</div>
+
+{% endblock %}
+</body>
+</html>

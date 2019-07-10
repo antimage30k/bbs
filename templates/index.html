@@ -1,0 +1,153 @@
+{% extends "topic/base_topic.html" %}
+{% block title %}BBS 首页{% endblock%}
+{% block main %}
+    <div id="zan-bodyer">
+        <div class="container">
+            <div class="row">
+                <div id="mainstay" class="col-md-8">
+                    <div inori-data="can it fast"></div>
+                    <div class="breadcrumb zan-breadcrumb">
+                        <i class="fa fa-home"></i>
+                        <span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage"
+                                                                              href="{{ url_for('index.index') }}"
+                                                                              class="home"><span property="name">RieRuuuu BBS</span></a><meta
+                                property="position" content="1"></span> &gt; <span property="itemListElement"
+                                                                                   typeof="ListItem"><span
+                            property="name"> 首页 </span><meta property="position" content="2"></span></div>
+                    <div id="article-list">
+                        {% for t in topics %}
+                        <div class="article well clearfix">
+                            <div class="data-article hidden-xs">
+                                <span class="month">子版块</span>
+                                <span class="day">{{ t.board().title }}</span>
+                            </div>
+                            <section class="hidden-xs">
+                                <div class="title-article">
+                                    <h1><a href="{{ url_for('topic.detail', id=t.id) }}">
+                                        {{ t.title }}</a>
+                                    </h1>
+                                </div>
+                                <div class="tag-article">
+                                    <span class="label label-zan"><i class="fa fa-calendar"></i>{{ t.created_time | format_time }}</span>
+                                    <span class="label label-zan"><i class="fa fa-user"></i> <a
+                                            href="{{ url_for('index.user_detail', id=t.user().id) }}"
+                                            rel="author">发布者：{{ t.user().username }}</a></span>
+                                    <span class="label label-zan"><i class="fa fa-eye"></i>{{ t.views }}次浏览</span>
+                                </div>
+                                <div class="content-article">
+
+                                </div>
+                                <a class="btn btn-danger pull-right read-more" href="{{ url_for('topic.detail', id=t.id) }}"
+                                   title="详细阅读">阅读全文
+                                    <span class="badge">{{ t.reply_count() }}</span></a>
+                            </section>
+                            <section class="visible-xs">
+                                <p>
+                                    <i class="fa fa-calendar"></i> 19-7-05 <i class="fa fa-eye"></i> 15 </p>
+
+                                <a class="btn btn-danger pull-right read-more btn-block"
+                                   href="{{ url_for('topic.detail', id=t.id) }}">阅读全文
+                                    <span class="badge">{{ t.reply_count() }}</span></a>
+                            </section>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+                <aside class="col-md-4" id="sidebar">
+                    <aside id="zan_login-7">
+                        <div class="panel panel-zan">
+                            <div class="panel-heading"><i class="fa fa-quote-left"></i> 欢迎！ <i
+                                    class="fa fa-quote-right"></i></div>
+                            <div class="login-panel text-center">
+                                <img src="{{ current_user.image }}"
+                                     width="60" height="60" alt="头像"
+                                     class="avatar avatar-60 wp-user-avatar wp-user-avatar-60 photo avatar-default"> <a
+                                    class="user-name" href="{{ url_for('index.profile') }}">{{ current_user.username }}</a>
+                                <a class="btn btn-inverse-primary"
+                                   href="{{ url_for('topic.new', board_id=-1) }}"
+                                   title="">发布新帖</a>
+                            </div>
+
+                        </div>
+
+                    </aside>
+                    <aside id="zan_latest_posts-8">
+                        <div class="panel panel-zan recent hidden-xs">
+                            <div class="panel-heading">
+                                <i class="fa fa-refresh"></i> 最新文章 <i class="fa fa-times-circle panel-remove"></i>
+                                <i class="fa fa-chevron-circle-up panel-toggle"></i>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                {% for t in latest_topics %}
+                                <li class="list-group-item">
+<span class="post-title">
+<a href="{{ url_for('topic.detail', id=t.id) }}">
+{{ t.title }} </a>
+</span>
+                                    <span class="badge">{{ t.views }}</span>
+                                </li>
+                        {% endfor %}
+                            </ul>
+                        </div>
+                    </aside>
+            </div>
+        </div>
+        <div id="topcontrol" style="display: none;"><img
+                src="./作品项目 Archives - VCB-Studio _ VCB-Studio_files/backtotop.png"></div>
+    </div>
+    <footer id="zan-footer">
+        <div class="container">
+            网站备案号：皖ICP备19011374号
+        </div>
+    </footer>
+
+
+</div>
+<div id="shiftnav-toggle-main"
+     class="shiftnav-toggle-main-align-center shiftnav-toggle-style-full_bar shiftnav-togglebar-gap-auto shiftnav-togglebar-transparent shiftnav-toggle-edge-left shiftnav-toggle-icon-x shiftnav-toggle-position-absolute shiftnav-toggle-main-align-center shiftnav-toggle-style-full_bar shiftnav-togglebar-gap-auto shiftnav-togglebar-transparent shiftnav-toggle-edge-left shiftnav-toggle-icon-x shiftnav-toggle-position-absolute shiftnav-togglebar-gap-on"
+     data-shiftnav-target="shiftnav-main" style="">
+    <div id="shiftnav-toggle-main-button" class="shiftnav-toggle shiftnav-toggle-shiftnav-main shiftnav-toggle-burger"
+         data-shiftnav-target="shiftnav-main"><i class="fa fa-bars"></i></div>
+    <div class="shiftnav-main-toggle-content shiftnav-toggle-main-block"><img
+            src="./作品项目 Archives - VCB-Studio _ VCB-Studio_files/logo.png"></div>
+</div>
+<div class="shiftnav shiftnav-shiftnav-main shiftnav-left-edge shiftnav-skin-custom shiftnav-transition-standard"
+     id="shiftnav-main" data-shiftnav-id="shiftnav-main" style="max-height: 841px;">
+    <div class="shiftnav-inner">
+        <nav class="shiftnav-nav">
+            <ul id="menu-navbar-1"
+                class="shiftnav-menu shiftnav-targets-medium shiftnav-targets-text-default shiftnav-targets-icon-default shiftnav-indent-subs shiftnav-active-on-hover	shiftnav-active-highlight">
+                <li class="menu-item menu-item-type-taxonomy menu-item-object-category current-menu-item menu-item-has-children menu-item-7075 shiftnav-sub-always shiftnav-depth-0">
+                    <a class="shiftnav-target" href="https://vcb-s.com/archives/category/works"><i
+                            class="fa fa-book"></i> 作品项目</a>
+
+                </li>
+                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7074 shiftnav-sub-always shiftnav-depth-0">
+                    <a class="shiftnav-target" href="https://vcb-s.com/archives/category/kb"><i class="fa fa-group"></i>
+                        科普系列</a>
+
+                </li>
+                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-3128 shiftnav-sub-always shiftnav-depth-0">
+                    <a class="shiftnav-target" href="https://vcb-s.com/archives/category/planlog"><i
+                            class="fa fa-calendar"></i> 计划与日志</a>
+
+                </li>
+                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3103 shiftnav-depth-0"><a
+                        class="shiftnav-target" href="https://vcb-s.com/contact"><i class="fa fa-coffee"></i> 留言板</a>
+                </li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3311 shiftnav-sub-always shiftnav-depth-0">
+                    <a class="shiftnav-target" href="http://bbs.vcb-s.com/"><i class="fa fa-comments-o"></i> 论坛</a>
+
+                </li>
+                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-7076 shiftnav-sub-always shiftnav-depth-0">
+                    <a class="shiftnav-target" href="https://vcb-s.com/archives/category/about"><i
+                            class="fa fa-user"></i> 关于 VCB-S</a>
+
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+{% endblock %}
