@@ -37,7 +37,7 @@ mysql -u root -ptest -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_nat
 rm -f /etc/nginx/sites-enabled/default
 rm -f /etc/nginx/sites-available/default
 # 不要再 sites-available 里面放任何东西
-cp /var/www/web19/bbs.nginx /etc/nginx/sites-enabled/bbs
+cp /var/www/bbs/bbs.nginx /etc/nginx/sites-enabled/bbs
 # 获取读写执行权限
 chmod -R o+rwx /var/www/bbs
 

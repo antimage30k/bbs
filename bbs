@@ -1,0 +1,27 @@
+server {
+    listen 443;
+        server_name www.rieruuuu.xyz; #填写绑定证书的域名
+        ssl on;
+        ssl_certificate /usr/local/nginx/conf/1_www.rieruuuu.xyz_bundle.crt;#证书文件名称
+        ssl_certificate_key /usr/local/nginx/conf/2_www.rieruuuu.xyz.key;#私钥文件名称
+        ssl_session_timeout 5m;
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2; #请按照这个协议配置
+        ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;#请按照这个套件配置
+        ssl_prefer_server_ciphers on;
+    location /images {
+        alias /var/www/bbs/images;
+    }
+
+    location /static {
+        alias /var/www/bbs/static;
+    }
+
+    location / {
+        proxy_pass http://localhost:2000;
+    }
+}
+server {
+listen 80;
+server_name www.rieruuuu.xyz; #填写绑定证书的域名
+rewrite ^(.*)$ https://$host$1 permanent; #把http的域名请求转成https
+}
