@@ -6,6 +6,10 @@ from flask import Blueprint, request, render_template, abort, redirect, url_for
 
 from models.message import send_mail
 from models.user import User
+import redis
+
+
+reset_token = redis.StrictRedis()
 
 
 # 枚举错误类型
@@ -15,10 +19,6 @@ class Error(Enum):
 
 
 main = Blueprint('reset', __name__)
-
-
-# reset_token 全局字典，存储随机生成的token 和 user id
-reset_token = {}
 
 
 # 发送密码重置链接邮件
@@ -38,7 +38,9 @@ def send():
 # 发送密码重置邮件
 def send_reset_mail(u):
     token = str(uuid.uuid4())
-    reset_token[token] = u.id
+    reset_token.set(token, u.id)
+    # 10 min 过期
+    reset_token.expire(token, 600)
     content = 'https://www.rieruuuu.xyz/reset/view?token={}'.format(token)
     # 发送邮件
     send_mail(
@@ -59,7 +61,7 @@ def forget_pw():
 def view():
     token = request.args['token']
     # token 有效，则重置密码
-    if token in reset_token:
+    if reset_token.exists(token):
         return render_template('reset_pw.html', token=token)
     else:
         # token 无效则返回一个错误页面
@@ -73,7 +75,7 @@ def update_password():
     args = request.args
     token = args['token']
     new_password = args['password']
-    if token in reset_token:
+    if reset_token.exists(token):
         update_pw(token, new_password)
         return redirect(url_for("index.index"))
     else:
@@ -83,9 +85,9 @@ def update_password():
 
 # 更新密码
 def update_pw(token, new_password):
-    user_id = reset_token[token]
+    user_id = int(reset_token.get(token))
     # 密码加盐
     new_password = User.salted_password(new_password)
     User.update(user_id, password=new_password)
     # 从reset_token 字典里删除已经用过的token
-    reset_token.pop(token)
+    reset_token.delete(token)
