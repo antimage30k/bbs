@@ -4,7 +4,7 @@ from enum import Enum
 import config
 from flask import Blueprint, request, render_template, abort, redirect, url_for
 
-from models.message import send_mail
+from models.message import send_mail_async
 from models.user import User
 import redis
 
@@ -43,7 +43,7 @@ def send_reset_mail(u):
     reset_token.expire(token, 600)
     content = 'https://www.rieruuuu.xyz/reset/view?token={}'.format(token)
     # 发送邮件
-    send_mail(
+    send_mail_async.delay(
         subject='Reset Password',
         author=config.admin_mail,
         to=u.email,

@@ -22,7 +22,7 @@ sysctl -w net.ipv6.conf.all.disable_ipv6=0
 export DEBIAN_FRONTEND=noninteractive
 # 装依赖
 apt-get install -y git supervisor nginx python3-pip mysql-server redis-server
-pip3 install jinja2 flask gevent gunicorn pymysql flask_sqlalchemy flask_mail marrow.mailer redis
+pip3 install jinja2 flask gevent gunicorn pymysql flask_sqlalchemy flask_mail marrow.mailer redis Celery
 
 # 删除测试用户和测试数据库
 # 删除测试用户和测试数据库并限制关闭公网访问

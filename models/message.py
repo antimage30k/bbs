@@ -1,5 +1,3 @@
-from time import sleep
-
 from marrow.mailer import Mailer
 from sqlalchemy import Column, Unicode, UnicodeText, Integer
 
@@ -7,7 +5,9 @@ from config import admin_mail
 import secret
 from models.base_model import SQLMixin, db
 from models.user import User
-# from tasks import send_async, mailer
+# 消息队列保证邮件投递
+from task_queue import celery
+
 
 def configured_mailer():
     config = {
@@ -29,16 +29,31 @@ def configured_mailer():
 mailer = configured_mailer()
 
 
-def send_mail(subject, author, to, content):
-    m = mailer.new(
-        subject=subject,
-        author=author,
-        to=to,
-    )
-    m.plain = content
-
-    mailer.send(m)
-    # sleep(30)
+# 消息队列保证邮件投递
+@celery.task(bind=True)
+def send_mail_async(self, subject, author, to, content):
+    # 有了 bind 才能去拿到 self 参数
+    # 这样才能去通过 self 调用当前 task 的一些功能
+    # 比如重试
+    try:
+        m = mailer.new(
+            subject=subject,
+            author=author,
+            to=to,
+        )
+        m.plain = content
+        mailer.send(m)
+    except Exception as exc:
+        # 3秒重试一次 最多重试5次
+        raise self.retry(exc=exc, countdown=3, max_retries=5)
+    # m = mailer.new(
+    #     subject=subject,
+    #     author=author,
+    #     to=to,
+    # )
+    # m.plain = content
+    #
+    # mailer.send(m)
 
 
 class Messages(SQLMixin, db.Model):
@@ -58,12 +73,13 @@ class Messages(SQLMixin, db.Model):
         Messages.new(form)
 
         receiver: User = User.one(id=receiver_id)
-        send_mail(
+        send_mail_async.delay(
             subject=title,
             author=admin_mail,
             to=receiver.email,
             content='站内信通知：\n {}'.format(content),
         )
+        # 多线程异步
         import threading
         # form = dict(
         #     subject=form['title'],
@@ -71,24 +87,8 @@ class Messages(SQLMixin, db.Model):
         #     to=receiver.email,
         #     plain=form['content'],
         # )
-        # t = threading.Thread(target=_send_mail, kwargs=form)
+        # t = threading.Thread(target=send_mail, kwargs=form)
         # t.start()
-        #
-        # m = mailer.new(
-        #     subject=form['title'],
-        #     author=admin_mail,
-        #     to=receiver.email,
-        # )
-        # m.plain = form['content']
-        #
-        # mailer.send(m)
-        # sleep(30)
-        # send_async.delay(
-        #     subject=form['title'],
-        #     author=admin_mail,
-        #     to=receiver.email,
-        #     plain=form['content']
-        # )
 
     def sender(self):
         s = User.one(id=self.sender_id)
