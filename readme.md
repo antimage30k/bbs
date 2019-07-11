@@ -51,7 +51,7 @@
 -
 - 将文件拷贝到 `/var/www/bbs` 文件夹下作为根目录
 
-- 您需要在根目录下自行添加 `secret.py` 文件 `config.py` 文件和 `dbpassword.sh` 文件
+- 您需要在根目录下自行添加 `secret.py` 文件、 `config.py` 文件和 `dbpassword.sh` 文件
 
 - `secret.py` 内容为
 >mail_password = '您的企业邮箱密码'
