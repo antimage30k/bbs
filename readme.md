@@ -49,23 +49,23 @@
 
 **如何运行**
 -
-- 将文件拷贝到 `/var/www/bbs` 文件夹下作为根目录
+- 将项目文件克隆到 `/var/www` 文件夹下，项目文件夹作为根目录
 
 - 您需要在根目录下自行添加 `config.py` 文件、 `secret.py` 文件和 `dbpassword.sh` 文件
 
-- `config.py` 内容为
+-- `config.py` 内容为
 >test_mail = '您的测试邮箱（同时也是 admin 用户 和 test 用户的默认邮箱）'
 
 >admin_mail = '您的腾讯企业邮箱地址'
 
-- `secret.py` 内容为
+-- `secret.py` 内容为
 >mail_password = '您的企业邮箱密码'
 
 >secret_key = '您的 Flask 密钥'
 
 >database_password = '您的 MYSQL 数据库密码'
 
-- `dbpassword.sh` 内容为
+-- `dbpassword.sh` 内容为
 >您设置的 MYSQL 数据库密码
 
 - 执行 `bash deploy.sh $(cat dbpassword.sh)` 命令
