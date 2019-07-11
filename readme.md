@@ -55,11 +55,14 @@
 
 - `secret.py` 内容为
 >mail_password = '您的企业邮箱密码'
+
 >secret_key = '您的 Flask 密钥'
+
 >database_password = '您的 MYSQL Server 密码'
 
 - `config.py` 内容为
 >test_mail = '您的测试邮箱（同时也是 admin 用户 和 test 用户的默认邮箱）'
+
 >admin_mail = '您的企业邮箱地址（您也可以使用我提供的邮箱： `RieRuuuu@rieruuuu.xyz` ）'
 
 - 执行 `bash deploy.sh` 命令
