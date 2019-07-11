@@ -4,3 +4,4 @@ log.txt
 secret.py
 database_secret.conf
 applocal.py
+config.py
