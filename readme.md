@@ -51,7 +51,7 @@
 -
 - 将文件拷贝到 `/var/www/bbs` 文件夹下作为根目录
 
-- 您需要在根目录下自行添加 `secret.py` 文件和 `config.py` 文件
+- 您需要在根目录下自行添加 `secret.py` 文件 `config.py` 文件和 `dbpassword.sh` 文件
 
 - `secret.py` 内容为
 >mail_password = '您的企业邮箱密码'
@@ -65,4 +65,7 @@
 
 >admin_mail = '您的企业邮箱地址（您也可以使用我提供的邮箱： `RieRuuuu@rieruuuu.xyz` ）'
 
-- 执行 `bash deploy.sh` 命令
+- `dbpassword.sh` 内容为
+>您设置的数据库密码
+
+- 执行 `bash deploy.sh $(cat dbpassword.sh)` 命令

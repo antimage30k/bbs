@@ -5,3 +5,4 @@ secret.py
 database_secret.conf
 applocal.py
 config.py
+dbpassword.sh
