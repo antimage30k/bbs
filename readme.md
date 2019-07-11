@@ -66,6 +66,6 @@
 >admin_mail = '您的企业邮箱地址（您也可以使用我提供的邮箱： `RieRuuuu@rieruuuu.xyz` ）'
 
 - `dbpassword.sh` 内容为
->您设置的MYSQL数据库密码
+>您设置的 MYSQL 数据库密码
 
 - 执行 `bash deploy.sh $(cat dbpassword.sh)` 命令
