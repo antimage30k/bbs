@@ -41,7 +41,10 @@ cp /var/www/bbs/bbs.nginx /etc/nginx/sites-enabled/bbs
 # 获取读写执行权限
 chmod -R o+rwx /var/www/bbs
 
+# 使用 supervisor 守护 gunicorn worker 和 celery worker 进程
 cp /var/www/bbs/bbs.conf /etc/supervisor/conf.d/bbs.conf
+
+cp /var/www/bbs/celery.conf /etc/supervisor/conf.d/celery.conf
 
 
 # 初始化
