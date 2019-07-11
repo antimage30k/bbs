@@ -4,7 +4,7 @@ from celery import Celery
 
 from marrow.mailer import Mailer
 
-from config import admin_mail
+from config import admin_mail, smtp_server, smtp_port
 
 celery = Celery('tasks', backend='redis://localhost', broker='redis://localhost')
 
@@ -15,8 +15,8 @@ def configured_mailer():
         'transport.debug': True,
         'transport.timeout': 1,
         'transport.use': 'smtp',
-        'transport.host': 'smtp.exmail.qq.com',
-        'transport.port': 465,
+        'transport.host': smtp_server,
+        'transport.port': smtp_port,
         'transport.tls': 'ssl',
         'transport.username': admin_mail,
         'transport.password': secret.mail_password,

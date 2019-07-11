@@ -1,5 +1,5 @@
 # 基于 Flask 的论坛
-———— ———— ———— ———— ———— ————
+
 
 **地址：** 
 - https://www.rieruuuu.xyz
@@ -54,17 +54,21 @@
 - 您需要在根目录下自行添加 `config.py` 文件、 `secret.py` 文件和 `dbpassword.sh` 文件
 
   - `config.py` 内容为
-	>test_mail = '您的测试邮箱（同时也是 admin 用户 和 test 用户的默认邮箱）'
-	>
-	>admin_mail = '您的腾讯企业邮箱地址'
+    ```python
+    test_mail = '您的测试邮箱（同时也是 admin 用户 和 test 用户的默认邮箱）'
+    admin_mail = '您的企业邮箱地址'
+    smtp_server = '您的企业邮箱发送邮件服务器地址'
+    smtp_port = 您的企业邮箱发送服务器 SSL 端口
+    # 以腾讯企业邮箱为例，smtp_server = 'smtp.exmail.qq.com' smtp_port = 465
+    ```
 
   - `secret.py` 内容为
-	>mail_password = '您的企业邮箱密码'
-	>
-	>secret_key = '您的 Flask 密钥'
-	>
-	>database_password = '您的 MYSQL 数据库密码'
-
+    ```python
+    mail_password = '您的企业邮箱密码'
+    secret_key = '您的自定义 Flask 密钥'
+    database_password = '您的 MYSQL 数据库密码'
+    ```
+    
   - `dbpassword.sh` 内容为
 	>您设置的 MYSQL 数据库密码
 
