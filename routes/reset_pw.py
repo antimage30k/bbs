@@ -4,7 +4,7 @@ from enum import Enum
 import config
 from flask import Blueprint, request, render_template, abort, redirect, url_for
 
-from models.message import send_mail_async
+from task_queue import send_mail_async
 from models.user import User
 import redis
 
