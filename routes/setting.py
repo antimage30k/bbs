@@ -4,13 +4,14 @@ from flask import (
     Blueprint,
     redirect, url_for)
 from models.user import User
-from routes import current_user, csrf_required, new_csrf_token
+from routes import current_user, csrf_required, new_csrf_token, login_required
 
 main = Blueprint('setting', __name__)
 
 
 # setting 路由函数
 @main.route("/")
+@login_required
 def index():
     # 获取当前用户和form表单，交给change 函数处理
     # 如果是GET请求则不会处理，而是返回setting页面

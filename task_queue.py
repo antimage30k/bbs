@@ -53,4 +53,3 @@ def send_mail_async(self, subject, author, to, content):
     # m.plain = content
     #
     # mailer.send(m)
-    
