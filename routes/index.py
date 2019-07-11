@@ -43,7 +43,9 @@ main = Blueprint('index', __name__)
 @login_required
 def index():
     u = current_user()
-    ts = Topic.all()
+    # ts = Topic.all()
+    # 按 updated_time 降序排列
+    ts = Topic.query.order_by(Topic.updated_time.desc()).all()
     latest_topics = Topic.all_creat_time_desc()
     return render_template("index.html", current_user=u, topics=ts, latest_topics=latest_topics)
 

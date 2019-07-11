@@ -6,7 +6,9 @@ from flask import (
     Blueprint,
     Request)
 
+from models.base_model import current_time
 from models.message import Messages
+from models.topic import Topic
 from routes import *
 
 from models.reply import Reply
@@ -60,5 +62,8 @@ def add():
 
     form = form.to_dict()
     m = Reply.new(form, user_id=u.id)
+    # 回复顶帖功能
+    t_id = form['topic_id']
+    Topic.update(t_id, updated_time=current_time)
     return redirect(url_for('topic.detail', id=m.topic_id))
 
