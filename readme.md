@@ -72,4 +72,6 @@
   - `dbpassword.sh` 内容为
 	>您设置的 MYSQL 数据库密码
 
+- 根据您的部署域名和 `CA` 证书文件地址，修改 `bbs.nginx` 文件
+ 
 - 执行 `bash deploy.sh $(cat dbpassword.sh)` 命令
