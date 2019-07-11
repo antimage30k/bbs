@@ -1,3 +1,5 @@
+import time
+
 from flask import (
     render_template,
     request,
@@ -64,6 +66,7 @@ def add():
     m = Reply.new(form, user_id=u.id)
     # 回复顶帖功能
     t_id = form['topic_id']
-    Topic.update(t_id, updated_time=current_time)
+    reply_time = current_time()
+    Topic.update(t_id, updated_time=reply_time)
     return redirect(url_for('topic.detail', id=m.topic_id))
 
