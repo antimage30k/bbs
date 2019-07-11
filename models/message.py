@@ -6,7 +6,7 @@ import secret
 from models.base_model import SQLMixin, db
 from models.user import User
 # 消息队列保证邮件投递
-from task_queue import celery
+from task_queue import send_mail_async
 
 
 def configured_mailer():
@@ -27,33 +27,6 @@ def configured_mailer():
 
 
 mailer = configured_mailer()
-
-
-# 消息队列保证邮件投递
-@celery.task(bind=True)
-def send_mail_async(self, subject, author, to, content):
-    # 有了 bind 才能去拿到 self 参数
-    # 这样才能去通过 self 调用当前 task 的一些功能
-    # 比如重试
-    try:
-        m = mailer.new(
-            subject=subject,
-            author=author,
-            to=to,
-        )
-        m.plain = content
-        mailer.send(m)
-    except Exception as exc:
-        # 3秒重试一次 最多重试5次
-        raise self.retry(exc=exc, countdown=3, max_retries=5)
-    # m = mailer.new(
-    #     subject=subject,
-    #     author=author,
-    #     to=to,
-    # )
-    # m.plain = content
-    #
-    # mailer.send(m)
 
 
 class Messages(SQLMixin, db.Model):
@@ -80,7 +53,6 @@ class Messages(SQLMixin, db.Model):
             content='站内信通知：\n {}'.format(content),
         )
         # 多线程异步
-        import threading
         # form = dict(
         #     subject=form['title'],
         #     author=admin_mail,
