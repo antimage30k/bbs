@@ -80,4 +80,4 @@ def avatar_add():
     # 清除对应的缓存
     k = 'current_user_{}'.format(u.id)
     cache.delete(k)
-    return redirect(url_for('.profile'))
+    return redirect(url_for('index.profile'))
