@@ -1,10 +1,16 @@
+import os
+import uuid
+
 from flask import (
     render_template,
     request,
     Blueprint,
     redirect, url_for)
+from werkzeug.datastructures import FileStorage
+
 from models.user import User
-from routes import current_user, csrf_required, new_csrf_token, login_required
+from routes import current_user, csrf_required, new_csrf_token, login_required, cache
+from routes.index import main
 
 main = Blueprint('setting', __name__)
 
@@ -49,3 +55,29 @@ def change(u, form):
     form.pop('action')
     # 更新用户信息
     User.update(id=u.id, **form)
+    # 清除缓存
+    k = 'current_user_{}'.format(u.id)
+    cache.delete(k)
+
+
+@main.route('/image/add', methods=['POST'])
+def avatar_add():
+    # 不应该直接存用户输入的文件名
+    # 比如文件名为 ../../root/.ssh/authorized_keys
+    # 保存路径变成 images/../../root/.ssh/authorized_keys
+    # 进而改写authorized_keys文件
+    #
+    # 可以用 Flask 的安全文件名函数来防御
+    # filename = secure_filename(file.filename)
+    file: FileStorage = request.files['avatar']
+    suffix = file.filename.split('.')[-1]
+    filename = str(uuid.uuid4())
+    path = os.path.join('images', filename) + '.' + suffix
+    file.save(path)
+
+    u = current_user()
+    User.update(u.id, image='/images/{}.{}'.format(filename, suffix))
+    # 清除对应的缓存
+    k = 'current_user_{}'.format(u.id)
+    cache.delete(k)
+    return redirect(url_for('.profile'))

@@ -1,6 +1,3 @@
-import os
-import uuid
-
 from flask import (
     render_template,
     request,
@@ -8,11 +5,9 @@ from flask import (
     session,
     url_for,
     Blueprint,
-    make_response,
     abort,
     send_from_directory
 )
-from werkzeug.datastructures import FileStorage
 
 from models.reply import Reply
 from models.topic import Topic
@@ -24,8 +19,6 @@ from routes import current_user, login_required
 #
 # cache = redis.StrictRedis()
 
-
-from utils import log
 
 main = Blueprint('index', __name__)
 
@@ -165,27 +158,6 @@ def user_detail(id):
         tsp = recent_reply(user_id)
 
         return render_template('profile.html', user=u, created=ts, replied=tsp)
-
-
-@main.route('/image/add', methods=['POST'])
-def avatar_add():
-    # 不应该直接存用户输入的文件名
-    # 比如文件名为 ../../root/.ssh/authorized_keys
-    # 保存路径变成 images/../../root/.ssh/authorized_keys
-    # 进而改写authorized_keys文件
-    #
-    # 可以用 Flask 的安全文件名函数来防御
-    # filename = secure_filename(file.filename)
-    file: FileStorage = request.files['avatar']
-    suffix = file.filename.split('.')[-1]
-    filename = str(uuid.uuid4())
-    path = os.path.join('images', filename) + '.' + suffix
-    file.save(path)
-
-    u = current_user()
-    User.update(u.id, image='/images/{}.{}'.format(filename, suffix))
-
-    return redirect(url_for('.profile'))
 
 
 @main.route('/images/<filename>')
