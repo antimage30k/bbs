@@ -20,7 +20,10 @@ def current_user():
     k = 'current_user_{}'.format(uid)
     if cache.exists(k):
         v = cache.get(k)
-        u = json.loads(v)
+        u_data = json.loads(v)
+        # 转化成对象再返回
+        u = User()
+        u.__dict__.update(u_data)
         return u
     else:
         u = User.one(id=uid)
