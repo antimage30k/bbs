@@ -167,34 +167,15 @@ def user_detail(id):
         return render_template('profile.html', user=u, created=ts, replied=tsp)
 
 
-# @main.route('/profile')
-# def profile():
-#     print('running profile route')
-#     u = current_user()
-#     if u is None:
-#         return redirect(url_for('.index'))
-#     else:
-#         created = created_topic(u.id)
-#         replied = replied_topic(u.id)
-#         return render_template(
-#             'profile.html',
-#             user=u,
-#             created=created,
-#             replied=replied
-#         )
-#
-#
-# @main.route('/user/<int:id>')
-# def user_detail(id):
-#     u = User.one(id=id)
-#     if u is None:
-#         abort(404)
-#     else:
-#         return render_template('profile.html', user=u)
-
-
 @main.route('/image/add', methods=['POST'])
 def avatar_add():
+    # 不应该直接存用户输入的文件名
+    # 比如文件名为 ../../root/.ssh/authorized_keys
+    # 保存路径变成 images/../../root/.ssh/authorized_keys
+    # 进而改写authorized_keys文件
+    #
+    # 可以用 Flask 的安全文件名函数来防御
+    # filename = secure_filename(file.filename)
     file: FileStorage = request.files['avatar']
     suffix = file.filename.split('.')[-1]
     filename = str(uuid.uuid4())
@@ -210,7 +191,16 @@ def avatar_add():
 @main.route('/images/<filename>')
 def image(filename):
     # 不要直接拼接路由，不安全，比如
-    # 防范目录遍历攻击
+    # http://www.xx.com/images/..%5Capp.py
+    # 会读取到本来不该给用户读取的文件
+    #
+    # path = os.path.join('images', filename)
+    # print('images path', path)
+    # return open(path, 'rb').read()
+    # 可以先判断文件在不在文件夹下，再发送文件
+    # if filename in os.listdir('images'):
+    #     return
+    # 防范目录遍历攻击， 使用 Flask 的send_from_directory 函数
     return send_from_directory('images', filename)
 
 

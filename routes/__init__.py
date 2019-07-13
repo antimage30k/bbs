@@ -1,3 +1,4 @@
+import json
 import uuid
 from functools import wraps
 
@@ -10,12 +11,22 @@ import redis
 
 # 初始化 csrf_token 数据库
 csrf_tokens = redis.StrictRedis()
+cache = redis.StrictRedis()
 
 
 def current_user():
+    # 使用 redis 缓存高频使用的 current_user
     uid = session.get('user_id', -1)
-    u = User.one(id=uid)
-    return u
+    k = 'current_user_{}'.format(uid)
+    if cache.exists(k):
+        v = cache.get(k)
+        u = json.loads(v)
+        return u
+    else:
+        u = User.one(id=uid)
+        v = json.dumps(u.json())
+        cache.set(k, v)
+        return u
     # session_id = request.cookies.get('session_id')
     # print('session_id', session_id)
     # if session_id is not None:
