@@ -24,9 +24,12 @@ def current_user():
         return u
     else:
         u = User.one(id=uid)
-        v = json.dumps(u.json())
-        cache.set(k, v)
-        return u
+        if u is None:
+            return None
+        else:
+            v = json.dumps(u.json())
+            cache.set(k, v)
+            return u
     # session_id = request.cookies.get('session_id')
     # print('session_id', session_id)
     # if session_id is not None:
