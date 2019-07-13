@@ -10,7 +10,7 @@ from werkzeug.datastructures import FileStorage
 
 from models.user import User
 from routes import current_user, csrf_required, new_csrf_token, login_required, cache
-from routes.index import main
+
 
 main = Blueprint('setting', __name__)
 
@@ -80,4 +80,4 @@ def avatar_add():
     # 清除对应的缓存
     k = 'current_user_{}'.format(u.id)
     cache.delete(k)
-    return redirect(url_for('index.profile'))
+    return redirect(url_for('setting.index'))
