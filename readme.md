@@ -67,11 +67,11 @@
     ```python
     mail_password = '您的企业邮箱密码'
     secret_key = '您的自定义 Flask 密钥'
-    database_password = '您的 MYSQL 数据库密码'
+    database_password = '您的 MySQL 数据库密码'
     ```
     
   - `dbpassword.sh` 内容为
-	>您设置的 MYSQL 数据库密码
+	>您设置的 MySQL 数据库密码
 
 - 根据您的部署域名和 `CA` 证书文件地址，修改 `bbs.nginx` 文件
  
