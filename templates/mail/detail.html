@@ -75,14 +75,14 @@
         </div>
     </div>
 
-    <script type="text/javascript">
+<script type="text/javascript">
     // 识别网址，转换为超链接
 var txt = document.querySelector('#message-content').innerHTML;
-var regexp = /(http://|https://)((w|=|?|.|/|&|-)+)/g; //正则匹配
-txt1 = txt.replace(regexp, function($url){
+var regExp = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g; //正则匹配
+txt1 = txt.replace(regExp, function($url){
     return "<a href='" + $url + "' target='_blank'>" + $url + "</a>";
 });
- document.getElementById('text').innerHTML=txt1
+ document.getElementById('message-content').innerHTML = txt1
 </script>
 
 {% endblock %}
