@@ -39,7 +39,7 @@ def users_from_content(content):
 
 def send_mails(sender, receivers, reply_link, reply_content):
     print('send_mail', sender, receivers, reply_content)
-    content = '链接：[{}]({})\n内容：{}'.format(
+    content = '链接：<a href="{}">{}</a>\n内容：{}'.format(
         reply_link,
         reply_link,
         reply_content,
