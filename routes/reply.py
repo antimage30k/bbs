@@ -39,12 +39,13 @@ def users_from_content(content):
 
 def send_mails(sender, receivers, reply_link, reply_content):
     print('send_mail', sender, receivers, reply_content)
-    content = '链接：{}\n内容：{}'.format(
+    content = '链接：[{}]({})\n内容：{}'.format(
         reply_link,
-        reply_content
+        reply_link,
+        reply_content,
     )
     for r in receivers:
-        title = '你被 {} AT 了'.format(sender.username)
+        title = '{}在回复中at了你，快来看看吧。'.format(sender.username)
         Messages.send(
             title=title,
             content=content,
