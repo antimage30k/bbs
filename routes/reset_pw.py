@@ -41,7 +41,7 @@ def send_reset_mail(u):
     reset_token.set(token, u.id)
     # 10 min 过期
     reset_token.expire(token, 600)
-    content = 'https://www.rieruuuu.xyz/reset/view?token={}'.format(token)
+    content = 'https://www.{}/reset/view?token={}'.format(config.host, token)
     # 发送邮件
     send_mail_async.delay(
         subject='Reset Password',

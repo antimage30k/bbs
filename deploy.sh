@@ -10,7 +10,7 @@ apt-get install -y zsh curl ufw
 ufw allow 22
 ufw allow 80
 ufw allow 443
-ufw allow 465
+# ufw allow 465
 ufw default deny incoming
 ufw default allow outgoing
 ufw status verbose
@@ -22,6 +22,8 @@ sysctl -w net.ipv6.conf.all.disable_ipv6=0
 export DEBIAN_FRONTEND=noninteractive
 # 装依赖
 apt-get install -y git supervisor nginx python3-pip mysql-server redis-server
+# 强制升级pip3
+pip3 install --upgrade pip
 pip3 install jinja2 flask gevent gunicorn pymysql flask_sqlalchemy flask_mail marrow.mailer redis Celery
 
 # 删除测试用户和测试数据库
@@ -36,7 +38,7 @@ mysql -u root -p$1 -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_nativ
 # 删掉 nginx default 设置
 rm -f /etc/nginx/sites-enabled/default
 rm -f /etc/nginx/sites-available/default
-# 不要再 sites-available 里面放任何东西
+# 不要在 sites-available 里面放任何东西
 cp /var/www/bbs/bbs.nginx /etc/nginx/sites-enabled/bbs
 # 获取读写执行权限
 chmod -R o+rwx /var/www/bbs

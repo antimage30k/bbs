@@ -4,7 +4,7 @@ from functools import wraps
 
 from flask import session, request, abort, render_template
 
-from models.user import User
+from models.user import User, UserRole
 
 # 导入redis
 import redis
@@ -62,7 +62,7 @@ def admin_required(route_function):
     @wraps(route_function)
     def func():
         u = current_user()
-        if u.username == 'admin':
+        if u.role == UserRole.admin.name:
             return route_function()
         else:
             return render_template('login.html')

@@ -61,6 +61,7 @@
     smtp_server = '您的企业邮箱发送邮件服务器地址'
     smtp_port = 您的企业邮箱发送服务器 SSL 端口
     # 以腾讯企业邮箱为例，smtp_server = 'smtp.exmail.qq.com' smtp_port = 465
+    host = '您所要部署的网站域名'
     ```
 
   - `secret.py` 内容为

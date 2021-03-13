@@ -6,7 +6,7 @@ from models.base_model import db
 from models.board import Board
 from models.reply import Reply
 from models.topic import Topic
-from models.user import User
+from models.user import User, UserRole
 
 
 def reset_database():
@@ -28,12 +28,14 @@ def generate_fake_date():
     form = dict(
         username='test',
         password='123',
+        role=UserRole.normal.name,
     )
     u = User.register(form)
 
     form = dict(
         username='admin',
         password='123',
+        role=UserRole.admin.name,
     )
     User.register(form)
 

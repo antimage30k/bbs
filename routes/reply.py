@@ -30,7 +30,7 @@ def users_from_content(content):
         if p.startswith('@'):
             username = p[1:]
             u = User.one(username=username)
-            print('users_from_content <{}> <{}> <{}>'.format(username, p, parts))
+            # print('users_from_content <{}> <{}> <{}>'.format(username, p, parts))
             if u is not None:
                 users.append(u)
 
@@ -38,7 +38,7 @@ def users_from_content(content):
 
 
 def send_mails(sender, receivers, reply_link, reply_content):
-    print('send_mail', sender, receivers, reply_content)
+    # print('send_mail', sender, receivers, reply_content)
     content = '链接：{}\n内容：{}'.format(
         reply_link,
         reply_content,

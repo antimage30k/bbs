@@ -119,7 +119,7 @@
         {% for t in replied %}
             <div class="cell">
 
-                <a class="user_avatar pull-left" href="">
+                <a class="user_avatar pull-left" href="{{ url_for('index.user_detail', id=t.user().id) }}">
                     <img src={{ t.user().image }}>
                 </a>
 

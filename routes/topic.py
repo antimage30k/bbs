@@ -41,7 +41,7 @@ def detail(id):
 def delete():
     id = int(request.args.get('id'))
     u = current_user()
-    print('删除 topic 用户是', u, id)
+    # print('删除 topic 用户是', u, id)
     Topic.delete(id)
     return redirect(url_for('.index'))
 

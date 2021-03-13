@@ -31,7 +31,7 @@ def index():
 def update():
     u = current_user()
     form = request.form.to_dict()
-    print('form', form)
+    # print('form', form)
     change(u, form)
     return redirect(url_for('.index'))
 

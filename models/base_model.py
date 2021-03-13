@@ -68,7 +68,7 @@ class SQLMixin(object):
         __repr__ 是一个魔法方法
         简单来说, 它的作用是得到类的 字符串表达 形式
         比如 print(u) 实际上是 print(u.__repr__())
-        不明白就看书或者 搜
+
         """
         name = self.__class__.__name__
         s = ''
@@ -108,7 +108,7 @@ if __name__ == '__main__':
         password='456',
     )
     u = SimpleUser.new(form)
-    print(u)
+    # print(u)
     u = SimpleUser.one(username='123')
-    print(u)
+    # print(u)
 
