@@ -30,6 +30,7 @@ def index():
 @main.route('/<int:id>')
 def detail(id):
     u = current_user()
+    # Topic.get 增加一次点击阅读计数
     m = Topic.get(id)
     latest = Topic.all_creat_time_desc()
     # 传递 topic 的所有 reply 到 页面中
@@ -62,3 +63,17 @@ def add():
     u = current_user()
     t = Topic.new(form, user_id=u.id)
     return redirect(url_for('topic.detail', id=t.id))
+
+
+@main.route("/edit/<int:id>", methods=['GET', 'POST'])
+@admin_required
+@csrf_required
+def edit(id):
+    if request.method == 'GET':
+        token = new_csrf_token()
+        topic = Topic.one(id=id)
+        return render_template("topic/edit.html", topic=topic, token=token)
+    if request.method == 'POST':
+        content = request.form['content']
+        Topic.update(id, content=content)
+        return redirect(url_for("topic.detail", id=id))
