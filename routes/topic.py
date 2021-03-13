@@ -32,9 +32,12 @@ def detail(id):
     u = current_user()
     # Topic.get 增加一次点击阅读计数
     m = Topic.get(id)
-    latest = Topic.all_creat_time_desc()
-    # 传递 topic 的所有 reply 到 页面中
-    return render_template("topic/detail.html", topic=m, current_user=u, latest_topics=latest)
+    if m is not None:
+        latest = Topic.all_creat_time_desc()
+        # 传递 topic 的所有 reply 到 页面中
+        return render_template("topic/detail.html", topic=m, current_user=u, latest_topics=latest)
+    else:
+        abort(404)
 
 
 @main.route("/delete")

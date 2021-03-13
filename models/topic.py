@@ -24,9 +24,12 @@ class Topic(SQLMixin, db.Model):
     @classmethod
     def get(cls, id):
         m = cls.one(id=id)
-        m.views += 1
-        m.save()
-        return m
+        if m is not None:
+            m.views += 1
+            m.save()
+            return m
+        else:
+            return None
 
     def user(self):
         u = User.one(id=self.user_id)
