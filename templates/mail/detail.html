@@ -52,7 +52,7 @@
                             <a class="user_avatar pull-left" href="{{ url_for('index.user_detail', id=message.receiver_id) }}">
                                 <img src={{ message.receiver().image }}>
                             </a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span>{{ message.sender().username }}</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span>{{ message.receiver().username }}</span>
 
                         </div>
                     </div>
