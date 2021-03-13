@@ -6,7 +6,7 @@
     <form action="{{ url_for('topic.edit', id=topic.id, token=token)}}" method="POST">
         <input hidden="hidden" name="id" placeholder="id" value="{{ topic.id }}"></input>
         <br>
-        <textarea name="content" placeholder ='' rows='30' cols="120">{{ topic.content }}</textarea>
+        <textarea name="content" placeholder ='' rows='30' style="width: 1000px">{{ topic.content }}</textarea>
         <br>
         <button>提交修改</button>
     </form>
