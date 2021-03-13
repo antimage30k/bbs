@@ -69,10 +69,12 @@ def add():
 @admin_required
 @csrf_required
 def edit(id):
+    # GET方法访问则返回修改文章的页面
     if request.method == 'GET':
         token = new_csrf_token()
         topic = Topic.one(id=id)
         return render_template("topic/edit.html", topic=topic, token=token)
+    # POST方法访问则根据发送的form更新topic内容
     if request.method == 'POST':
         content = request.form['content']
         Topic.update(id, content=content)
