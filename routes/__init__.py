@@ -49,21 +49,21 @@ def current_user():
 
 def login_required(f):
     @wraps(f)
-    def func():
+    def func(*args, **kwargs):
         u = current_user()
         if u is None:
             return render_template('login.html')
         else:
-            return f()
+            return f(*args, **kwargs)
     return func
 
 
 def admin_required(route_function):
     @wraps(route_function)
-    def func():
+    def func(*args, **kwargs):
         u = current_user()
         if u.role == UserRole.admin.name:
-            return route_function()
+            return route_function(*args, **kwargs)
         else:
             return render_template('login.html')
     return func
